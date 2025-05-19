@@ -1,3 +1,10 @@
+// Poll SCM setiap 2 menit
+properties([
+    pipelineTriggers([
+        pollSCM('H/2 * * * *')
+    ])
+])
+// Scripted pipeline
 node {
     docker.image('node:16-buster-slim').inside('-p 3000:3000') {
         stage('Build') {
